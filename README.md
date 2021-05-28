@@ -1,10 +1,10 @@
-# Project Title
+# Pac-man (2D)
 
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh elit, iaculis id condimentum vitae, efficitur nec lorem. Nam convallis ligula vitae velit porta interdum. Donec euismod sem ligula, aliquet lacinia eros mollis molestie. Maecenas et enim mollis lacus ultrices consequat. Quisque vehicula id neque sit amet placerat. Etiam posuere vel ipsum vel tincidunt. Nulla et efficitur urna. Phasellus varius gravida velit non commodo. Vivamus sagittis commodo nibh vitae posuere.
+> Pac-Man is a maze action game developed and released by Namco for arcades in 1980. The player controls Pac-Man, who must eat all the dots inside an enclosed maze while avoiding four colored ghosts. Eating large flashing dots called "Power Pellets" causes the ghosts to turn blue, allowing Pac-Man to eat them for bonus points.
 
 - **Difficulty**:
 - **Topics**:
-- **Version**:
+- **Version**: Unity 2020.2
 - **Author**: [@adamgraham](https://github.com/adamgraham)
 - [**Tutorial Video**](https://www.youtube.com/c/zigurous)
-- [**Source Code**](https://github.com/zigurous)
+- [**Source Code**](https://github.com/zigurous/unity-pacman-tutorial)
