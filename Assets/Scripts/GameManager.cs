@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public Text scoreText;
     private int _score;
+
+    public Text livesText;
     private int _lives;
 
     private void Start()
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         _lives = lives;
 
-        // TODO: update UI
+        this.livesText.text = "x" + lives.ToString();
     }
 
     private void SetScore(int score)
