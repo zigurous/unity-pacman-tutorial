@@ -9,7 +9,7 @@ public class Pellet : MonoBehaviour
     {
         this.gameObject.SetActive(false);
 
-        FindObjectOfType<GameManager>().IncreaseScore(this.points);
+        FindObjectOfType<GameManager>().PelletEaten(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
