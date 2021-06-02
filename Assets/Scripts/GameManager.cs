@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator NewRoundSequence()
+    {
+        Time.timeScale = 0.0f;
+        float nextRoundTime = Time.realtimeSinceStartup + 2.0f;
+
+        while (Time.realtimeSinceStartup < nextRoundTime) {
+            yield return null;
+        }
+
+        Time.timeScale = 1.0f;
+        NewRound();
+    }
+
     private void SetLives(int lives)
     {
         _lives = lives;
@@ -52,7 +66,7 @@ public class GameManager : MonoBehaviour
         SetScore(_score + pellet.points);
 
         if (!HasRemainingPellets()) {
-            NewRound();
+            StartCoroutine(NewRoundSequence());
         }
     }
 
