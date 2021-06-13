@@ -57,9 +57,10 @@ public class Pacman : MonoBehaviour
         }
     }
 
-    public void ResetPosition()
+    public void ResetState()
     {
         this.transform.position = _startingPosition;
+        this.gameObject.SetActive(true);
 
         SetDirection(Vector2.right);
     }

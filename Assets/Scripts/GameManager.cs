@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +7,11 @@ public class GameManager : MonoBehaviour
     private Ghost[] _ghosts;
     private Pacman _pacman;
 
+    public Text gameOverText;
     public Text scoreText;
-    private int _score;
-
     public Text livesText;
+
+    private int _score;
     private int _lives;
 
     private void Awake()
@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    private void Update()
+    {
+        if (_lives <= 0 && Input.anyKey) {
+            NewGame();
+        }
+    }
+
     private void NewGame()
     {
         SetScore(0);
@@ -34,20 +41,33 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        _pacman.ResetPosition();
-
-        for (int i = 0; i < _ghosts.Length; i++) {
-            _ghosts[i].ResetPosition();
-        }
+        this.gameOverText.enabled = false;
 
         foreach (Transform pellet in this.pellets) {
             pellet.gameObject.SetActive(true);
+        }
+
+        ResetPacmanAndGhosts();
+    }
+
+    private void ResetPacmanAndGhosts()
+    {
+        _pacman.ResetState();
+
+        for (int i = 0; i < _ghosts.Length; i++) {
+            _ghosts[i].ResetState();
         }
     }
 
     private void GameOver()
     {
+        this.gameOverText.enabled = true;
 
+        _pacman.gameObject.SetActive(false);
+
+        for (int i = 0; i < _ghosts.Length; i++) {
+            _ghosts[i].gameObject.SetActive(false);
+        }
     }
 
     private void SetLives(int lives)
@@ -72,12 +92,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            _pacman.gameObject.SetActive(false);
+
             SetLives(_lives - 1);
 
             if (_lives > 0) {
-                StartCoroutine(Transition(NewRound));
+                Invoke(nameof(ResetPacmanAndGhosts), 3.0f);
             } else {
-                StartCoroutine(Transition(GameOver));
+                GameOver();
             }
         }
     }
@@ -86,8 +108,10 @@ public class GameManager : MonoBehaviour
     {
         SetScore(_score + pellet.points);
 
-        if (!HasRemainingPellets()) {
-            StartCoroutine(Transition(NewRound));
+        if (!HasRemainingPellets())
+        {
+            _pacman.gameObject.SetActive(false);
+            Invoke(nameof(NewRound), 3.0f);
         }
     }
 
@@ -101,19 +125,6 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    private IEnumerator Transition(System.Action onTransition)
-    {
-        Time.timeScale = 0.0f;
-
-        yield return new WaitForSecondsRealtime(1.5f);
-
-        onTransition.Invoke();
-
-        yield return new WaitForSecondsRealtime(1.5f);
-
-        Time.timeScale = 1.0f;
     }
 
 }

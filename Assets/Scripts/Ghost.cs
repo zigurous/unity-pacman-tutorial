@@ -20,9 +20,12 @@ public class Ghost : MonoBehaviour
         _startingPosition = this.transform.position;
     }
 
-    public void ResetPosition()
+    public void ResetState()
     {
         this.transform.position = _startingPosition;
+        this.gameObject.SetActive(true);
+
+        StopBlueMode();
     }
 
     public void StartBlueMode(float duration)
