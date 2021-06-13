@@ -10,12 +10,19 @@ public class Ghost : MonoBehaviour
     public Sprite[] spritesFlashing;
 
     private AnimatedSprite _animatedSprite;
+    private Vector3 _startingPosition;
 
     public bool vulnerable { get; private set; }
 
     private void Awake()
     {
         _animatedSprite = GetComponent<AnimatedSprite>();
+        _startingPosition = this.transform.position;
+    }
+
+    public void ResetPosition()
+    {
+        this.transform.position = _startingPosition;
     }
 
     public void StartBlueMode(float duration)

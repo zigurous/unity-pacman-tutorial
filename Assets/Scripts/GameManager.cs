@@ -5,13 +5,20 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Transform pellets;
-    public Pacman pacman;
+    private Ghost[] _ghosts;
+    private Pacman _pacman;
 
     public Text scoreText;
     private int _score;
 
     public Text livesText;
     private int _lives;
+
+    private void Awake()
+    {
+        _pacman = FindObjectOfType<Pacman>();
+        _ghosts = FindObjectsOfType<Ghost>();
+    }
 
     private void Start()
     {
@@ -27,24 +34,20 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        this.pacman.ResetPosition();
+        _pacman.ResetPosition();
+
+        for (int i = 0; i < _ghosts.Length; i++) {
+            _ghosts[i].ResetPosition();
+        }
 
         foreach (Transform pellet in this.pellets) {
             pellet.gameObject.SetActive(true);
         }
     }
 
-    private IEnumerator NewRoundSequence()
+    private void GameOver()
     {
-        Time.timeScale = 0.0f;
-        float nextRoundTime = Time.realtimeSinceStartup + 2.0f;
 
-        while (Time.realtimeSinceStartup < nextRoundTime) {
-            yield return null;
-        }
-
-        Time.timeScale = 1.0f;
-        NewRound();
     }
 
     private void SetLives(int lives)
@@ -69,7 +72,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            SetLives(_lives - 1);
 
+            if (_lives > 0) {
+                StartCoroutine(Transition(NewRound));
+            } else {
+                StartCoroutine(Transition(GameOver));
+            }
         }
     }
 
@@ -78,7 +87,7 @@ public class GameManager : MonoBehaviour
         SetScore(_score + pellet.points);
 
         if (!HasRemainingPellets()) {
-            StartCoroutine(NewRoundSequence());
+            StartCoroutine(Transition(NewRound));
         }
     }
 
@@ -92,6 +101,19 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private IEnumerator Transition(System.Action onTransition)
+    {
+        Time.timeScale = 0.0f;
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        onTransition.Invoke();
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        Time.timeScale = 1.0f;
     }
 
 }
