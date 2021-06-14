@@ -10,16 +10,21 @@ public class Ghost : MonoBehaviour
 
     public Movement movement { get; private set; }
     public AnimatedSprite animatedSprite { get; private set; }
+    public Vector3 startingPosition { get; private set; }
     public bool vulnerable { get; private set; }
 
     private void Awake()
     {
         this.movement = GetComponent<Movement>();
         this.animatedSprite = GetComponent<AnimatedSprite>();
+        this.startingPosition = this.transform.position;
     }
 
     private void OnEnable()
     {
+        this.transform.position = this.startingPosition;
+        this.movement.SetDirection(Vector2.zero);
+
         StopBlueMode();
     }
 

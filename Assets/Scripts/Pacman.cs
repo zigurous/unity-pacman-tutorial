@@ -4,14 +4,17 @@ using UnityEngine;
 public class Pacman : MonoBehaviour
 {
     public Movement movement { get; private set; }
+    public Vector3 startingPosition { get; private set; }
 
     private void Awake()
     {
         this.movement = GetComponent<Movement>();
+        this.startingPosition = this.transform.position;
     }
 
     private void OnEnable()
     {
+        this.transform.position = this.startingPosition;
         this.movement.SetDirection(Vector2.right);
     }
 
