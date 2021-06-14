@@ -60,9 +60,13 @@ PrefabInstance:
       value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3259707676119580881, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f5d5cb4fd17bfd54ba600140ae959812, type: 3}
+      propertyPath: m_Color.g
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259707676119580881, guid: 2fde9760580df734b965459e729d1aba, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9882353
+      objectReference: {fileID: 0}
     - target: {fileID: 3259707676119580881, guid: 2fde9760580df734b965459e729d1aba, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -118,6 +122,14 @@ PrefabInstance:
     - target: {fileID: 3259707676119580887, guid: 2fde9760580df734b965459e729d1aba, type: 3}
       propertyPath: m_Name
       value: Ghost_Pinky
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337672407132840256, guid: 2fde9760580df734b965459e729d1aba, type: 3}
+      propertyPath: m_Color.g
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337672407132840256, guid: 2fde9760580df734b965459e729d1aba, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9882353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fde9760580df734b965459e729d1aba, type: 3}
