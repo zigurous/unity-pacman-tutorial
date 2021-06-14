@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Movement))]
 public class Ghost : MonoBehaviour
 {
     public Sprite[] spritesUp;
@@ -9,22 +10,19 @@ public class Ghost : MonoBehaviour
     public Sprite[] spritesBlueMode;
     public Sprite[] spritesFlashing;
 
-    private AnimatedSprite _animatedSprite;
-    private Vector3 _startingPosition;
+    public Movement movement { get; private set; }
+    public AnimatedSprite animatedSprite { get; private set; }
 
     public bool vulnerable { get; private set; }
 
     private void Awake()
     {
-        _animatedSprite = GetComponent<AnimatedSprite>();
-        _startingPosition = this.transform.position;
+        this.movement = GetComponent<Movement>();
+        this.animatedSprite = GetComponent<AnimatedSprite>();
     }
 
-    public void ResetState()
+    private void OnEnable()
     {
-        this.transform.position = _startingPosition;
-        this.gameObject.SetActive(true);
-
         StopBlueMode();
     }
 
@@ -32,7 +30,7 @@ public class Ghost : MonoBehaviour
     {
         this.vulnerable = true;
 
-        _animatedSprite.animationSprites = this.spritesBlueMode;
+        this.animatedSprite.animationSprites = this.spritesBlueMode;
 
         CancelInvoke(nameof(StartFlashing));
         CancelInvoke(nameof(StopBlueMode));
@@ -47,18 +45,17 @@ public class Ghost : MonoBehaviour
         CancelInvoke(nameof(StopBlueMode));
 
         this.vulnerable = false;
-
-        _animatedSprite.animationSprites = this.spritesRight;
+        this.animatedSprite.animationSprites = this.spritesRight;
     }
 
     private void StartFlashing()
     {
-        _animatedSprite.animationSprites = this.spritesFlashing;
+        this.animatedSprite.animationSprites = this.spritesFlashing;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Pacman")) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman")) {
             FindObjectOfType<GameManager>().GhostTouched(this);
         }
     }
