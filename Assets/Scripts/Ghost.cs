@@ -8,58 +8,25 @@ public class Ghost : MonoBehaviour
     public SpriteRenderer blue;
     public SpriteRenderer flashing;
 
-    public Movement movement { get; private set; }
     public AnimatedSprite animatedSprite { get; private set; }
-    public Vector3 startingPosition { get; private set; }
-    public bool vulnerable { get; private set; }
+    public Movement movement { get; private set; }
+    public Chase chase { get; private set; }
+    public Scatter scatter { get; private set; }
+    public Frightened frightened { get; private set; }
 
     private void Awake()
     {
-        this.movement = GetComponent<Movement>();
         this.animatedSprite = GetComponent<AnimatedSprite>();
-        this.startingPosition = this.transform.position;
+        this.movement = GetComponent<Movement>();
+        this.chase = GetComponent<Chase>();
+        this.scatter = GetComponent<Scatter>();
+        this.frightened = GetComponent<Frightened>();
     }
 
     public void ResetState()
     {
-        this.transform.position = this.startingPosition;
-        this.movement.SetDirection(this.movement.initialDirection);
+        this.movement.ResetState();
         this.gameObject.SetActive(true);
-
-        StopBlueMode();
-    }
-
-    public void StartBlueMode(float duration)
-    {
-        this.vulnerable = true;
-        this.body.enabled = false;
-        this.eyes.enabled = false;
-        this.flashing.enabled = false;
-        this.blue.enabled = true;
-
-        CancelInvoke(nameof(StartFlashing));
-        CancelInvoke(nameof(StopBlueMode));
-
-        Invoke(nameof(StartFlashing), duration * 0.5f);
-        Invoke(nameof(StopBlueMode), duration);
-    }
-
-    public void StopBlueMode()
-    {
-        CancelInvoke(nameof(StartFlashing));
-        CancelInvoke(nameof(StopBlueMode));
-
-        this.body.enabled = true;
-        this.eyes.enabled = true;
-        this.blue.enabled = false;
-        this.flashing.enabled = false;
-        this.vulnerable = false;
-    }
-
-    private void StartFlashing()
-    {
-        this.blue.enabled = false;
-        this.flashing.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,7 +41,7 @@ public class Ghost : MonoBehaviour
         Node node = other.GetComponent<Node>();
 
         if (node != null) {
-            this.movement.SetNextDirection(node.RandomAvailableDirection());
+            this.movement.SetDirection(node.RandomAvailableDirection());
         }
     }
 

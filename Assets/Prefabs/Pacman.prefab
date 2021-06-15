@@ -152,7 +152,7 @@ MonoBehaviour:
   initialDirection: {x: 1, y: 0}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 1536
 --- !u!114 &6038318316045854515
 MonoBehaviour:
   m_ObjectHideFlags: 0
