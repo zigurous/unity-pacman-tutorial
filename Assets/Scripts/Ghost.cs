@@ -21,6 +21,7 @@ public class Ghost : MonoBehaviour
         this.chase = GetComponent<Chase>();
         this.scatter = GetComponent<Scatter>();
         this.frightened = GetComponent<Frightened>();
+        this.frightened.enabled = false;
     }
 
     public void ResetState()
@@ -33,15 +34,6 @@ public class Ghost : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman")) {
             FindObjectOfType<GameManager>().GhostTouched(this);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Node node = other.GetComponent<Node>();
-
-        if (node != null) {
-            this.movement.SetDirection(node.RandomAvailableDirection());
         }
     }
 
