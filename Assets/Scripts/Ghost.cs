@@ -20,10 +20,11 @@ public class Ghost : MonoBehaviour
         this.startingPosition = this.transform.position;
     }
 
-    private void OnEnable()
+    public void ResetState()
     {
         this.transform.position = this.startingPosition;
         this.movement.SetDirection(Vector2.zero);
+        this.gameObject.SetActive(true);
 
         StopBlueMode();
     }
@@ -65,6 +66,15 @@ public class Ghost : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman")) {
             FindObjectOfType<GameManager>().GhostTouched(this);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Node node = other.GetComponent<Node>();
+
+        if (node != null) {
+            this.movement.SetNextDirection(node.RandomAvailableDirection());
         }
     }
 
