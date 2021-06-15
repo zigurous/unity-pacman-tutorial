@@ -188,7 +188,7 @@ MonoBehaviour:
   speed: 8
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!1 &5457398195424690228
 GameObject:
   m_ObjectHideFlags: 0
