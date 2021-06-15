@@ -15,7 +15,7 @@ public class Pacman : MonoBehaviour
     private void OnEnable()
     {
         this.transform.position = this.startingPosition;
-        this.movement.SetDirection(Vector2.right);
+        this.movement.SetDirection(this.movement.initialDirection);
     }
 
     private void Update()
