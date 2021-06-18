@@ -59,38 +59,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 1.75
       objectReference: {fileID: 0}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesUp.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 619b93cc097deba4a88cc93cec0b51e6, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesUp.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 51f0adca87522cf41b3bfdef22394f99, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesDown.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 79dae3c7132167c4caf0dfe50f399ffe, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesDown.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: a6a4580f669f37442b248d9fceadf437, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesLeft.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 0419f0dc484d7ea44b9559727637a836, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesLeft.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: b187ad475acbfa04a80862aa6f97a6b0, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesRight.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: f7fccf00d84a07c4b9793861d53ed1ed, type: 3}
-    - target: {fileID: 3259707676119580883, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: spritesRight.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 80eadc1876ef8214194c147c6b151ccd, type: 3}
     - target: {fileID: 3259707676119580886, guid: 2fde9760580df734b965459e729d1aba, type: 3}
       propertyPath: animationSprites.Array.data[0]
       value: 
@@ -102,10 +70,6 @@ PrefabInstance:
     - target: {fileID: 3259707676119580887, guid: 2fde9760580df734b965459e729d1aba, type: 3}
       propertyPath: m_Name
       value: Ghost_Blinky
-      objectReference: {fileID: 0}
-    - target: {fileID: 3259707676119580887, guid: 2fde9760580df734b965459e729d1aba, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6337672407132840256, guid: 2fde9760580df734b965459e729d1aba, type: 3}
       propertyPath: m_Color.b
