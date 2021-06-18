@@ -103,8 +103,11 @@ public class Ghost : MonoBehaviour
 
     private void Flash()
     {
-        this.blue.enabled = false;
-        this.white.enabled = true;
+        if (!this.eyes.enabled)
+        {
+            this.blue.enabled = false;
+            this.white.enabled = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
