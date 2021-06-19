@@ -10,10 +10,8 @@ public class PowerPellet : Pellet
 
         Ghost[] ghosts = FindObjectsOfType<Ghost>();
 
-        for (int i = 0; i < ghosts.Length; i++)
-        {
-            Ghost ghost = ghosts[i];
-            ghost.frightened.Enable(this.duration);
+        for (int i = 0; i < ghosts.Length; i++) {
+            ghosts[i].frightened.Enable(this.duration);
         }
     }
 
