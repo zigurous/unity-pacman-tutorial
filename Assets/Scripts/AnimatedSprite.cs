@@ -21,6 +21,10 @@ public class AnimatedSprite : MonoBehaviour
 
     private void Advance()
     {
+        if (!this.spriteRenderer.enabled) {
+            return;
+        }
+
         this.animationFrame++;
 
         if (this.animationFrame >= this.sprites.Length && this.loop) {
