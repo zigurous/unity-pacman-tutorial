@@ -36,6 +36,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        // Try to move in the next direction while it's queued to make movements
+        // more responsive
         if (this.nextDirection != Vector2.zero) {
             SetDirection(this.nextDirection);
         }
@@ -51,6 +53,9 @@ public class Movement : MonoBehaviour
 
     public void SetDirection(Vector2 direction, bool forced = false)
     {
+        // Only set the direction if the tile in that direction is available
+        // otherwise we set it as the next direction so it'll automatically be
+        // set when it does become available
         if (forced || !Occupied(direction))
         {
             this.direction = direction;
@@ -64,6 +69,7 @@ public class Movement : MonoBehaviour
 
     public bool Occupied(Vector2 direction)
     {
+        // If no collider is hit then there is no obstacle in that direction
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacleLayer);
         return hit.collider != null;
     }

@@ -17,6 +17,7 @@ public class Pacman : MonoBehaviour
 
     private void Update()
     {
+        // Set the new direction based on the current input
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
             this.movement.SetDirection(Vector2.up);
         }
@@ -30,6 +31,7 @@ public class Pacman : MonoBehaviour
             this.movement.SetDirection(Vector2.right);
         }
 
+        // Rotate pacman to face the movement direction
         float angle = Mathf.Atan2(this.movement.direction.y, this.movement.direction.x);
         this.transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
     }
