@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 512613669}
   - component: {fileID: 512613668}
   m_Layer: 9
-  m_Name: Portal_Right
+  m_Name: Passage_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1541,7 +1541,7 @@ GameObject:
   - component: {fileID: 1064051194}
   - component: {fileID: 1064051193}
   m_Layer: 9
-  m_Name: Portal_Left
+  m_Name: Passage_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
