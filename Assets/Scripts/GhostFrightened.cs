@@ -36,11 +36,8 @@ public class GhostFrightened : GhostBehavior
         if (!this.eaten)
         {
             this.eaten = true;
+            this.ghost.SetPosition(this.ghost.home.homeTransform.position);
             this.ghost.home.Enable(this.duration);
-
-            Vector3 position = this.ghost.home.homeTransform.position;
-            position.z = this.ghost.transform.position.z;
-            this.ghost.transform.position = position;
 
             this.body.enabled = false;
             this.eyes.enabled = true;
