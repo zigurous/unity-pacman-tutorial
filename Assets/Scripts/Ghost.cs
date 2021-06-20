@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Movement))]
 public class Ghost : MonoBehaviour
 {
-    public AnimatedSprite animatedSprite { get; private set; }
     public Movement movement { get; private set; }
     public GhostHome home { get; private set; }
     public GhostScatter scatter { get; private set; }
@@ -15,7 +14,6 @@ public class Ghost : MonoBehaviour
 
     private void Awake()
     {
-        this.animatedSprite = GetComponent<AnimatedSprite>();
         this.movement = GetComponent<Movement>();
         this.home = GetComponent<GhostHome>();
         this.scatter = GetComponent<GhostScatter>();
@@ -57,7 +55,9 @@ public class Ghost : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
-            if (!this.frightened.enabled) {
+            if (this.frightened.enabled) {
+                FindObjectOfType<GameManager>().GhostEaten(this);
+            } else {
                 FindObjectOfType<GameManager>().PacmanEaten();
             }
         }

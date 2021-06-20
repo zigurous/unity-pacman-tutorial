@@ -3,12 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Pellet : MonoBehaviour
 {
-    public int points;
+    public int points = 10;
 
     protected virtual void Eat()
     {
-        this.gameObject.SetActive(false);
-
         FindObjectOfType<GameManager>().PelletEaten(this);
     }
 

@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         }
 
         this.pacman.ResetState();
-        this.pacman.gameObject.SetActive(true);
     }
 
     private void GameOver()
@@ -62,6 +61,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < this.ghosts.Length; i++) {
             this.ghosts[i].gameObject.SetActive(false);
         }
+
+        this.pacman.gameObject.SetActive(false);
     }
 
     private void SetLives(int lives)
@@ -99,6 +100,8 @@ public class GameManager : MonoBehaviour
 
     public void PelletEaten(Pellet pellet)
     {
+        pellet.gameObject.SetActive(false);
+
         SetScore(this.score + pellet.points);
 
         if (!HasRemainingPellets())
@@ -110,6 +113,10 @@ public class GameManager : MonoBehaviour
 
     public void PowerPelletEaten(PowerPellet pellet)
     {
+        for (int i = 0; i < this.ghosts.Length; i++) {
+            this.ghosts[i].frightened.Enable(pellet.duration);
+        }
+
         PelletEaten(pellet);
         CancelInvoke(nameof(ResetGhostMultiplier));
         Invoke(nameof(ResetGhostMultiplier), pellet.duration);
