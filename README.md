@@ -4,7 +4,7 @@
 
 - **Difficulty**: Advanced
 - **Topics**: Sprites, Tilemaps, AI
-- **Version**: Unity 2020.2
+- **Version**: Unity 2021.1
 - **Author**: [@adamgraham](https://github.com/adamgraham)
 - [**Tutorial Video**](https://www.youtube.com/c/zigurous)
 - [**Source Code**](https://github.com/zigurous/unity-pacman-tutorial)
