@@ -15,8 +15,8 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        this.rigidbody = GetComponent<Rigidbody2D>();
-        this.startingPosition = this.transform.position;
+        rigidbody = GetComponent<Rigidbody2D>();
+        startingPosition = transform.position;
     }
 
     private void Start()
@@ -26,29 +26,29 @@ public class Movement : MonoBehaviour
 
     public void ResetState()
     {
-        this.speedMultiplier = 1.0f;
-        this.direction = this.initialDirection;
-        this.nextDirection = Vector2.zero;
-        this.transform.position = this.startingPosition;
-        this.rigidbody.isKinematic = false;
-        this.enabled = true;
+        speedMultiplier = 1.0f;
+        direction = initialDirection;
+        nextDirection = Vector2.zero;
+        transform.position = startingPosition;
+        rigidbody.isKinematic = false;
+        enabled = true;
     }
 
     private void Update()
     {
         // Try to move in the next direction while it's queued to make movements
         // more responsive
-        if (this.nextDirection != Vector2.zero) {
-            SetDirection(this.nextDirection);
+        if (nextDirection != Vector2.zero) {
+            SetDirection(nextDirection);
         }
     }
 
     private void FixedUpdate()
     {
-        Vector2 position = this.rigidbody.position;
-        Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
+        Vector2 position = rigidbody.position;
+        Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
 
-        this.rigidbody.MovePosition(position + translation);
+        rigidbody.MovePosition(position + translation);
     }
 
     public void SetDirection(Vector2 direction, bool forced = false)
@@ -59,18 +59,18 @@ public class Movement : MonoBehaviour
         if (forced || !Occupied(direction))
         {
             this.direction = direction;
-            this.nextDirection = Vector2.zero;
+            nextDirection = Vector2.zero;
         }
         else
         {
-            this.nextDirection = direction;
+            nextDirection = direction;
         }
     }
 
     public bool Occupied(Vector2 direction)
     {
         // If no collider is hit then there is no obstacle in that direction
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacleLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, obstacleLayer);
         return hit.collider != null;
     }
 
