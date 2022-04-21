@@ -14,7 +14,7 @@ public class GhostHome : GhostBehavior
     private void OnDisable()
     {
         // Check for active self to prevent error when object is destroyed
-        if (gameObject.activeSelf) {
+        if (gameObject.activeInHierarchy) {
             StartCoroutine(ExitTransition());
         }
     }
