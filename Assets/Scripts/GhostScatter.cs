@@ -19,7 +19,7 @@ public class GhostScatter : GhostBehavior
 
             // Prefer not to go back the same direction so increment the index to
             // the next available direction
-            if (node.availableDirections[index] == -ghost.movement.direction && node.availableDirections.Count > 1)
+            if (node.availableDirections.Count > 1 && node.availableDirections[index] == -ghost.movement.direction)
             {
                 index++;
 
