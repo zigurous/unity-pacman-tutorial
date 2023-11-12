@@ -12,7 +12,6 @@ public class Ghost : MonoBehaviour
 
     public Movement movement { get; private set; }
     public AnimatedSprite animatedSprite { get; private set; }
-
     public bool vulnerable { get; private set; }
 
     private void Awake()
@@ -29,8 +28,7 @@ public class Ghost : MonoBehaviour
     public void StartBlueMode(float duration)
     {
         this.vulnerable = true;
-
-        this.animatedSprite.animationSprites = this.spritesBlueMode;
+        this.animatedSprite.sprites = this.spritesBlueMode;
 
         CancelInvoke(nameof(StartFlashing));
         CancelInvoke(nameof(StopBlueMode));
@@ -45,12 +43,12 @@ public class Ghost : MonoBehaviour
         CancelInvoke(nameof(StopBlueMode));
 
         this.vulnerable = false;
-        this.animatedSprite.animationSprites = this.spritesRight;
+        this.animatedSprite.sprites = this.spritesRight;
     }
 
     private void StartFlashing()
     {
-        this.animatedSprite.animationSprites = this.spritesFlashing;
+        this.animatedSprite.sprites = this.spritesFlashing;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

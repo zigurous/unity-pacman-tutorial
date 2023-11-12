@@ -3,16 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimatedSprite : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    public Sprite[] animationSprites = new Sprite[0];
+    public SpriteRenderer spriteRenderer { get; private set; }
+    public Sprite[] sprites = new Sprite[0];
 
     public float animationTime = 0.25f;
-    private int _animationFrame;
+    public int animationFrame { get; private set; }
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = this.animationSprites[0];
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -22,13 +21,15 @@ public class AnimatedSprite : MonoBehaviour
 
     private void AnimateSprite()
     {
-        _animationFrame++;
+        this.animationFrame++;
 
-        if (_animationFrame >= this.animationSprites.Length) {
-            _animationFrame = 0;
+        if (this.animationFrame >= this.sprites.Length) {
+            this.animationFrame = 0;
         }
 
-        _spriteRenderer.sprite = this.animationSprites[_animationFrame];
+        if (this.animationFrame >= 0 && this.animationFrame < this.sprites.Length) {
+            this.spriteRenderer.sprite = this.sprites[this.animationFrame];
+        }
     }
 
 }
