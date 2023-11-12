@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class PowerPellet : Pellet
 {
     public float duration = 8.0f;

@@ -1,68 +1,37 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Movement))]
 public class Pacman : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
-    private Vector3 _startingPosition;
-    private Vector2 _direction = Vector2.right;
-    private Vector2 _desiredDirection;
-
-    public float speed = 8.0f;
-    public LayerMask obstacleLayer;
-    public Bounds levelBounds;
+    public Movement movement { get; private set; }
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _startingPosition = this.transform.position;
+        this.movement = GetComponent<Movement>();
+    }
+
+    private void OnEnable()
+    {
+        this.movement.SetDirection(Vector2.right);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
-            SetDirection(Vector2.up);
-        } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-            SetDirection(Vector2.down);
-        } else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-            SetDirection(Vector2.left);
-        } else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-            SetDirection(Vector2.right);
-        } else if (_desiredDirection != Vector2.zero) {
-            SetDirection(_desiredDirection);
+            this.movement.SetDirection(Vector2.up);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 translation = _direction * this.speed * Time.fixedDeltaTime;
-        Vector2 position = _rigidbody.position;
-
-        _rigidbody.MovePosition(position + translation);
-    }
-
-    private void SetDirection(Vector2 direction)
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 0.5f, this.obstacleLayer);
-
-        if (hit.collider == null)
-        {
-            _direction = direction;
-            _desiredDirection = Vector2.zero;
-
-            this.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg, Vector3.forward);
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            this.movement.SetDirection(Vector2.down);
         }
-        else
-        {
-            _desiredDirection = direction;
+        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+            this.movement.SetDirection(Vector2.left);
         }
-    }
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+            this.movement.SetDirection(Vector2.right);
+        }
 
-    public void ResetState()
-    {
-        this.transform.position = _startingPosition;
-        this.gameObject.SetActive(true);
-
-        SetDirection(Vector2.right);
+        float angle = Mathf.Atan2(this.movement.direction.y, this.movement.direction.x);
+        this.transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
     }
 
 }

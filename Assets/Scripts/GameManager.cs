@@ -52,10 +52,10 @@ public class GameManager : MonoBehaviour
 
     private void ResetPacmanAndGhosts()
     {
-        _pacman.ResetState();
+        _pacman.gameObject.SetActive(true);
 
         for (int i = 0; i < _ghosts.Length; i++) {
-            _ghosts[i].ResetState();
+            _ghosts[i].gameObject.SetActive(true);
         }
     }
 
