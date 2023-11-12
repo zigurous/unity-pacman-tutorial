@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6828496014975043216}
   - component: {fileID: 8940311761183307384}
   - component: {fileID: 6502982450547382734}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PowerPellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
