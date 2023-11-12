@@ -23,7 +23,7 @@ public class Ghost : MonoBehaviour
     public void ResetState()
     {
         this.transform.position = this.startingPosition;
-        this.movement.SetDirection(Vector2.zero);
+        this.movement.SetDirection(this.movement.initialDirection);
         this.gameObject.SetActive(true);
 
         StopBlueMode();

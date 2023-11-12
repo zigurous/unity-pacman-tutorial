@@ -4,6 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 8.0f;
+    public Vector2 initialDirection;
     public LayerMask obstacleLayer;
 
     public new Rigidbody2D rigidbody { get; private set; }
@@ -30,19 +31,22 @@ public class Movement : MonoBehaviour
         this.rigidbody.MovePosition(position + translation);
     }
 
-    public bool SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 direction)
     {
         if (!Occupied(direction))
         {
             this.direction = direction;
             this.nextDirection = Vector2.zero;
-            return true;
         }
         else
         {
             this.nextDirection = direction;
-            return false;
         }
+    }
+
+    public void SetInitialDirection()
+    {
+        SetDirection(this.initialDirection);
     }
 
     public void SetNextDirection(Vector2 direction)
