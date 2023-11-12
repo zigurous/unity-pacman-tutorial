@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         }
 
         this.pacman.ResetState();
+        this.pacman.gameObject.SetActive(true);
     }
 
     private void GameOver()
