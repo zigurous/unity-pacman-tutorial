@@ -74,7 +74,7 @@
       "dependencies": {}
     },
     "com.unity.2d.tilemap.extras": {
-      "version": "2.2.5",
+      "version": "2.2.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {

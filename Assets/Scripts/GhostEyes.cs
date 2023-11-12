@@ -8,8 +8,8 @@ public class GhostEyes : MonoBehaviour
     public Sprite left;
     public Sprite right;
 
-    public SpriteRenderer spriteRenderer { get; private set; }
-    public Movement movement { get; private set; }
+    private SpriteRenderer spriteRenderer;
+    private Movement movement;
 
     private void Awake()
     {

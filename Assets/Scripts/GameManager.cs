@@ -3,17 +3,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Ghost[] ghosts;
-    public Pacman pacman;
-    public Transform pellets;
+    public static GameManager Instance { get; private set; }
 
-    public Text gameOverText;
-    public Text scoreText;
-    public Text livesText;
+    [SerializeField] private Ghost[] ghosts;
+    [SerializeField] private Pacman pacman;
+    [SerializeField] private Transform pellets;
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text livesText;
 
-    public int ghostMultiplier { get; private set; } = 1;
-    public int score { get; private set; }
-    public int lives { get; private set; }
+    private int ghostMultiplier = 1;
+    private int lives = 3;
+    private int score = 0;
+
+    public int Lives => lives;
+    public int Score => score;
+
+    private void Awake()
+    {
+        if (Instance != null) {
+            DestroyImmediate(gameObject);
+        } else {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     private void Start()
     {

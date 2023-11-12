@@ -4,11 +4,11 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public LayerMask obstacleLayer;
-    public List<Vector2> availableDirections { get; private set; }
+    public readonly List<Vector2> availableDirections = new();
 
     private void Start()
     {
-        availableDirections = new List<Vector2>();
+        availableDirections.Clear();
 
         // We determine if the direction is available by box casting to see if
         // we hit a wall. The direction is added to list if available.
