@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (lives <= 0 && Input.anyKey) {
+        if (lives <= 0 && Input.anyKeyDown) {
             NewGame();
         }
     }
