@@ -4,6 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 8.0f;
+    public float speedMultiplier = 1.0f;
     public Vector2 initialDirection;
     public LayerMask obstacleLayer;
 
@@ -25,6 +26,7 @@ public class Movement : MonoBehaviour
 
     public void ResetState()
     {
+        this.speedMultiplier = 1.0f;
         this.direction = this.initialDirection;
         this.nextDirection = Vector2.zero;
         this.transform.position = this.startingPosition;
@@ -40,7 +42,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = this.rigidbody.position;
-        Vector2 translation = this.direction * this.speed * Time.fixedDeltaTime;
+        Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
 
         this.rigidbody.MovePosition(position + translation);
     }
