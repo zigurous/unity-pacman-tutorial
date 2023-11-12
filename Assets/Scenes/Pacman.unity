@@ -409,7 +409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pellets: {fileID: 1910537628}
-  pacman: {fileID: 1562682601}
   scoreText: {fileID: 1945791160}
   livesText: {fileID: 278868602}
 --- !u!4 &469897152
