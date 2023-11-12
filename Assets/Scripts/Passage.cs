@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Portal : MonoBehaviour
+public class Passage : MonoBehaviour
 {
     public Transform connection;
 
