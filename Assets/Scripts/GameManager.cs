@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text livesText;
 
-    public int ghostMultiplier = 1;
+    public int ghostMultiplier { get; private set; } = 1;
     public int score { get; private set; }
     public int lives { get; private set; }
 

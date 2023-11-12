@@ -508,8 +508,6 @@ MonoBehaviour:
   gameOverText: {fileID: 1133529214}
   scoreText: {fileID: 1945791160}
   livesText: {fileID: 278868602}
-  score: 0
-  lives: 0
 --- !u!4 &469897152
 Transform:
   m_ObjectHideFlags: 0
