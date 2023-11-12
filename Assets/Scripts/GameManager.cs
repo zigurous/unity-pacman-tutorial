@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.lives <= 0 && Input.anyKey) {
+        if (lives <= 0 && Input.anyKey) {
             NewGame();
         }
     }
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        this.gameOverText.enabled = false;
+        gameOverText.enabled = false;
 
-        foreach (Transform pellet in this.pellets) {
+        foreach (Transform pellet in pellets) {
             pellet.gameObject.SetActive(true);
         }
 
@@ -47,43 +47,43 @@ public class GameManager : MonoBehaviour
 
     private void ResetState()
     {
-        for (int i = 0; i < this.ghosts.Length; i++) {
-            this.ghosts[i].ResetState();
+        for (int i = 0; i < ghosts.Length; i++) {
+            ghosts[i].ResetState();
         }
 
-        this.pacman.ResetState();
+        pacman.ResetState();
     }
 
     private void GameOver()
     {
-        this.gameOverText.enabled = true;
+        gameOverText.enabled = true;
 
-        for (int i = 0; i < this.ghosts.Length; i++) {
-            this.ghosts[i].gameObject.SetActive(false);
+        for (int i = 0; i < ghosts.Length; i++) {
+            ghosts[i].gameObject.SetActive(false);
         }
 
-        this.pacman.gameObject.SetActive(false);
+        pacman.gameObject.SetActive(false);
     }
 
     private void SetLives(int lives)
     {
         this.lives = lives;
-        this.livesText.text = "x" + lives.ToString();
+        livesText.text = "x" + lives.ToString();
     }
 
     private void SetScore(int score)
     {
         this.score = score;
-        this.scoreText.text = score.ToString().PadLeft(2, '0');
+        scoreText.text = score.ToString().PadLeft(2, '0');
     }
 
     public void PacmanEaten()
     {
-        this.pacman.DeathSequence();
+        pacman.DeathSequence();
 
-        SetLives(this.lives - 1);
+        SetLives(lives - 1);
 
-        if (this.lives > 0) {
+        if (lives > 0) {
             Invoke(nameof(ResetState), 3.0f);
         } else {
             GameOver();
@@ -92,29 +92,29 @@ public class GameManager : MonoBehaviour
 
     public void GhostEaten(Ghost ghost)
     {
-        int points = ghost.points * this.ghostMultiplier;
-        SetScore(this.score + points);
+        int points = ghost.points * ghostMultiplier;
+        SetScore(score + points);
 
-        this.ghostMultiplier++;
+        ghostMultiplier++;
     }
 
     public void PelletEaten(Pellet pellet)
     {
         pellet.gameObject.SetActive(false);
 
-        SetScore(this.score + pellet.points);
+        SetScore(score + pellet.points);
 
         if (!HasRemainingPellets())
         {
-            this.pacman.gameObject.SetActive(false);
+            pacman.gameObject.SetActive(false);
             Invoke(nameof(NewRound), 3.0f);
         }
     }
 
     public void PowerPelletEaten(PowerPellet pellet)
     {
-        for (int i = 0; i < this.ghosts.Length; i++) {
-            this.ghosts[i].frightened.Enable(pellet.duration);
+        for (int i = 0; i < ghosts.Length; i++) {
+            ghosts[i].frightened.Enable(pellet.duration);
         }
 
         PelletEaten(pellet);
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     private bool HasRemainingPellets()
     {
-        foreach (Transform pellet in this.pellets)
+        foreach (Transform pellet in pellets)
         {
             if (pellet.gameObject.activeSelf) {
                 return true;
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetGhostMultiplier()
     {
-        this.ghostMultiplier = 1;
+        ghostMultiplier = 1;
     }
 
 }

@@ -13,10 +13,10 @@ public class GhostFrightened : GhostBehavior
     {
         base.Enable(duration);
 
-        this.body.enabled = false;
-        this.eyes.enabled = false;
-        this.blue.enabled = true;
-        this.white.enabled = false;
+        body.enabled = false;
+        eyes.enabled = false;
+        blue.enabled = true;
+        white.enabled = false;
 
         Invoke(nameof(Flash), duration / 2.0f);
     }
@@ -25,52 +25,52 @@ public class GhostFrightened : GhostBehavior
     {
         base.Disable();
 
-        this.body.enabled = true;
-        this.eyes.enabled = true;
-        this.blue.enabled = false;
-        this.white.enabled = false;
+        body.enabled = true;
+        eyes.enabled = true;
+        blue.enabled = false;
+        white.enabled = false;
     }
 
     private void Eaten()
     {
-        this.eaten = true;
-        this.ghost.SetPosition(this.ghost.home.inside.position);
-        this.ghost.home.Enable(this.duration);
+        eaten = true;
+        ghost.SetPosition(ghost.home.inside.position);
+        ghost.home.Enable(duration);
 
-        this.body.enabled = false;
-        this.eyes.enabled = true;
-        this.blue.enabled = false;
-        this.white.enabled = false;
+        body.enabled = false;
+        eyes.enabled = true;
+        blue.enabled = false;
+        white.enabled = false;
     }
 
     private void Flash()
     {
-        if (!this.eaten)
+        if (!eaten)
         {
-            this.blue.enabled = false;
-            this.white.enabled = true;
-            this.white.GetComponent<AnimatedSprite>().Restart();
+            blue.enabled = false;
+            white.enabled = true;
+            white.GetComponent<AnimatedSprite>().Restart();
         }
     }
 
     private void OnEnable()
     {
-        this.blue.GetComponent<AnimatedSprite>().Restart();
-        this.ghost.movement.speedMultiplier = 0.5f;
-        this.eaten = false;
+        blue.GetComponent<AnimatedSprite>().Restart();
+        ghost.movement.speedMultiplier = 0.5f;
+        eaten = false;
     }
 
     private void OnDisable()
     {
-        this.ghost.movement.speedMultiplier = 1.0f;
-        this.eaten = false;
+        ghost.movement.speedMultiplier = 1.0f;
+        eaten = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Node node = other.GetComponent<Node>();
 
-        if (node != null && this.enabled)
+        if (node != null && enabled)
         {
             Vector2 direction = Vector2.zero;
             float maxDistance = float.MinValue;
@@ -80,8 +80,8 @@ public class GhostFrightened : GhostBehavior
             {
                 // If the distance in this direction is greater than the current
                 // max distance then this direction becomes the new farthest
-                Vector3 newPosition = this.transform.position + new Vector3(availableDirection.x, availableDirection.y);
-                float distance = (this.ghost.target.position - newPosition).sqrMagnitude;
+                Vector3 newPosition = transform.position + new Vector3(availableDirection.x, availableDirection.y);
+                float distance = (ghost.target.position - newPosition).sqrMagnitude;
 
                 if (distance > maxDistance)
                 {
@@ -90,7 +90,7 @@ public class GhostFrightened : GhostBehavior
                 }
             }
 
-            this.ghost.movement.SetDirection(direction);
+            ghost.movement.SetDirection(direction);
         }
     }
 
@@ -98,7 +98,7 @@ public class GhostFrightened : GhostBehavior
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
-            if (this.enabled) {
+            if (enabled) {
                 Eaten();
             }
         }
