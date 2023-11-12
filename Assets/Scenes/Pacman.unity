@@ -402,14 +402,6 @@ PrefabInstance:
       propertyPath: outside
       value: 
       objectReference: {fileID: 918157309}
-    - target: {fileID: 5058308114681254252, guid: 8398b287235293d469d1683369c48531, type: 3}
-      propertyPath: exitTransform
-      value: 
-      objectReference: {fileID: 918157309}
-    - target: {fileID: 5058308114681254252, guid: 8398b287235293d469d1683369c48531, type: 3}
-      propertyPath: homeTransform
-      value: 
-      objectReference: {fileID: 40866121}
     - target: {fileID: 6184281723028841250, guid: 8398b287235293d469d1683369c48531, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -7571,14 +7563,6 @@ PrefabInstance:
       propertyPath: outside
       value: 
       objectReference: {fileID: 918157309}
-    - target: {fileID: 1340345220604751223, guid: 0d1f951e4ac24fe478d688dbf86a5c39, type: 3}
-      propertyPath: exitTransform
-      value: 
-      objectReference: {fileID: 918157309}
-    - target: {fileID: 1340345220604751223, guid: 0d1f951e4ac24fe478d688dbf86a5c39, type: 3}
-      propertyPath: homeTransform
-      value: 
-      objectReference: {fileID: 40866121}
     - target: {fileID: 3838302860257571699, guid: 0d1f951e4ac24fe478d688dbf86a5c39, type: 3}
       propertyPath: target
       value: 
@@ -7772,14 +7756,6 @@ PrefabInstance:
       propertyPath: outside
       value: 
       objectReference: {fileID: 918157309}
-    - target: {fileID: 8971009504729605341, guid: 25f5544974e8f0b409f1c5070cbb2c0e, type: 3}
-      propertyPath: exitTransform
-      value: 
-      objectReference: {fileID: 918157309}
-    - target: {fileID: 8971009504729605341, guid: 25f5544974e8f0b409f1c5070cbb2c0e, type: 3}
-      propertyPath: homeTransform
-      value: 
-      objectReference: {fileID: 40866121}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f5544974e8f0b409f1c5070cbb2c0e, type: 3}
 --- !u!1 &1910537627
@@ -10545,14 +10521,6 @@ PrefabInstance:
       propertyPath: outside
       value: 
       objectReference: {fileID: 918157309}
-    - target: {fileID: 4988485570163000569, guid: 87e861fcfe4201c4d8213cba69c0f024, type: 3}
-      propertyPath: exitTransform
-      value: 
-      objectReference: {fileID: 918157309}
-    - target: {fileID: 4988485570163000569, guid: 87e861fcfe4201c4d8213cba69c0f024, type: 3}
-      propertyPath: homeTransform
-      value: 
-      objectReference: {fileID: 40866121}
     - target: {fileID: 6258572098573448887, guid: 87e861fcfe4201c4d8213cba69c0f024, type: 3}
       propertyPath: m_Sprite
       value: 
