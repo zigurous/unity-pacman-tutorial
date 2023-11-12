@@ -3,12 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Movement))]
 public class Ghost : MonoBehaviour
 {
-    public Sprite[] spritesUp;
-    public Sprite[] spritesDown;
-    public Sprite[] spritesLeft;
-    public Sprite[] spritesRight;
-    public Sprite[] spritesBlueMode;
-    public Sprite[] spritesFlashing;
+    public SpriteRenderer body;
+    public SpriteRenderer eyes;
+    public SpriteRenderer blue;
+    public SpriteRenderer flashing;
 
     public Movement movement { get; private set; }
     public AnimatedSprite animatedSprite { get; private set; }
@@ -28,7 +26,10 @@ public class Ghost : MonoBehaviour
     public void StartBlueMode(float duration)
     {
         this.vulnerable = true;
-        this.animatedSprite.sprites = this.spritesBlueMode;
+        this.body.enabled = false;
+        this.eyes.enabled = false;
+        this.flashing.enabled = false;
+        this.blue.enabled = true;
 
         CancelInvoke(nameof(StartFlashing));
         CancelInvoke(nameof(StopBlueMode));
@@ -42,13 +43,17 @@ public class Ghost : MonoBehaviour
         CancelInvoke(nameof(StartFlashing));
         CancelInvoke(nameof(StopBlueMode));
 
+        this.body.enabled = true;
+        this.eyes.enabled = true;
+        this.blue.enabled = false;
+        this.flashing.enabled = false;
         this.vulnerable = false;
-        this.animatedSprite.sprites = this.spritesRight;
     }
 
     private void StartFlashing()
     {
-        this.animatedSprite.sprites = this.spritesFlashing;
+        this.blue.enabled = false;
+        this.flashing.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
