@@ -61,6 +61,18 @@ public class GameManager : MonoBehaviour
         this.scoreText.text = score.ToString().PadLeft(2, '0');
     }
 
+    public void GhostTouched(Ghost ghost)
+    {
+        if (ghost.vulnerable)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
     public void PelletEaten(Pellet pellet)
     {
         SetScore(_score + pellet.points);
