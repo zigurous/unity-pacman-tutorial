@@ -44,6 +44,7 @@ public class Pacman : MonoBehaviour
         this.deathSequence.enabled = false;
         this.deathSequence.spriteRenderer.enabled = false;
         this.movement.ResetState();
+        this.gameObject.SetActive(true);
     }
 
     public void DeathSequence()

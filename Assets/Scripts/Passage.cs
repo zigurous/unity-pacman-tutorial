@@ -7,10 +7,8 @@ public class Passage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ignore the z-axis because it is used for draw depth
-        Vector3 position = other.transform.position;
-        position.x = this.connection.position.x;
-        position.y = this.connection.position.y;
+        Vector3 position = this.connection.position;
+        position.z = other.transform.position.z;
         other.transform.position = position;
     }
 

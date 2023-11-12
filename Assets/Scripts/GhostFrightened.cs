@@ -34,7 +34,7 @@ public class GhostFrightened : GhostBehavior
     private void Eaten()
     {
         this.eaten = true;
-        this.ghost.SetPosition(this.ghost.home.homeTransform.position);
+        this.ghost.SetPosition(this.ghost.home.inside.position);
         this.ghost.home.Enable(this.duration);
 
         this.body.enabled = false;
@@ -98,9 +98,7 @@ public class GhostFrightened : GhostBehavior
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
-            if (this.enabled)
-            {
-                FindObjectOfType<GameManager>().GhostEaten(this.ghost);
+            if (this.enabled) {
                 Eaten();
             }
         }

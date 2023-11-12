@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class GhostHome : GhostBehavior
 {
-    public Transform homeTransform;
-    public Transform exitTransform;
+    public Transform inside;
+    public Transform outside;
 
     private void OnEnable()
     {
@@ -43,7 +43,7 @@ public class GhostHome : GhostBehavior
         // Animate to the starting point
         while (elapsed < duration)
         {
-            this.ghost.SetPosition(Vector3.Lerp(position, this.homeTransform.position, elapsed / duration));
+            this.ghost.SetPosition(Vector3.Lerp(position, this.inside.position, elapsed / duration));
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -53,7 +53,7 @@ public class GhostHome : GhostBehavior
         // Animate exiting the ghost home
         while (elapsed < duration)
         {
-            this.ghost.SetPosition(Vector3.Lerp(this.homeTransform.position, this.exitTransform.position, elapsed / duration));
+            this.ghost.SetPosition(Vector3.Lerp(this.inside.position, this.outside.position, elapsed / duration));
             elapsed += Time.deltaTime;
             yield return null;
         }
