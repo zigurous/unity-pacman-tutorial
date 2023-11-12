@@ -38,8 +38,6 @@ public class Pacman : MonoBehaviour
         Vector2 position = _rigidbody.position;
 
         _rigidbody.MovePosition(position + translation);
-
-        CheckLoopAround();
     }
 
     private void SetDirection(Vector2 direction)
@@ -56,22 +54,6 @@ public class Pacman : MonoBehaviour
         else
         {
             _desiredDirection = direction;
-        }
-    }
-
-    private void CheckLoopAround()
-    {
-        if (this.transform.position.x < this.levelBounds.min.x)
-        {
-            Vector2 position = _rigidbody.position;
-            position.x = this.levelBounds.max.x;
-            _rigidbody.position = position;
-        }
-        else if (this.transform.position.x > this.levelBounds.max.x)
-        {
-            Vector2 position = _rigidbody.position;
-            position.x = this.levelBounds.min.x;
-            _rigidbody.position = position;
         }
     }
 
