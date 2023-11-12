@@ -49,11 +49,13 @@ public class GhostFrightened : GhostBehavior
         {
             this.blue.enabled = false;
             this.white.enabled = true;
+            this.white.GetComponent<AnimatedSprite>().Restart();
         }
     }
 
     private void OnEnable()
     {
+        this.blue.GetComponent<AnimatedSprite>().Restart();
         this.ghost.movement.speedMultiplier = 0.5f;
         this.eaten = false;
     }
