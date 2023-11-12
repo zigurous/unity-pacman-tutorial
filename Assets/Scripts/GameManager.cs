@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text livesText;
 
+    public int ghostMultiplier = 1;
     public int score { get; private set; }
     public int lives { get; private set; }
 
@@ -95,7 +96,10 @@ public class GameManager : MonoBehaviour
 
     public void GhostEaten(Ghost ghost)
     {
-        SetScore(this.score + 200);
+        int points = ghost.points * this.ghostMultiplier;
+        SetScore(this.score + points);
+
+        this.ghostMultiplier++;
     }
 
     public void PelletEaten(Pellet pellet)
@@ -109,6 +113,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PowerPelletEaten(PowerPellet pellet)
+    {
+        PelletEaten(pellet);
+        CancelInvoke(nameof(ResetGhostMultiplier));
+        Invoke(nameof(ResetGhostMultiplier), pellet.duration);
+    }
+
     private bool HasRemainingPellets()
     {
         foreach (Transform pellet in this.pellets)
@@ -119,6 +130,11 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void ResetGhostMultiplier()
+    {
+        this.ghostMultiplier = 1;
     }
 
 }
