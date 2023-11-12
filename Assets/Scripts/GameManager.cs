@@ -90,9 +90,10 @@ public class GameManager : MonoBehaviour
 
     public void GhostTouched(Ghost ghost)
     {
-        if (ghost.frightened.enabled)
+        if (ghost.vulnerable)
         {
-
+            SetScore(_score + 200);
+            ghost.RetreatToHome();
         }
         else
         {
