@@ -7,21 +7,12 @@ public class Movement : MonoBehaviour
     public LayerMask obstacleLayer;
 
     public new Rigidbody2D rigidbody { get; private set; }
-    public Vector3 startingPosition { get; private set; }
     public Vector2 direction { get; private set; }
     public Vector2 nextDirection { get; private set; }
 
     private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody2D>();
-        this.startingPosition = this.transform.position;
-    }
-
-    private void OnEnable()
-    {
-        this.transform.position = this.startingPosition;
-        this.direction = Vector2.zero;
-        this.nextDirection = Vector2.zero;
     }
 
     private void Update()
