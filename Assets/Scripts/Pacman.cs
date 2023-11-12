@@ -3,6 +3,7 @@ using UnityEngine;
 public class Pacman : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
+    private Vector3 _startingPosition;
     private Vector2 _direction = Vector2.right;
     private Vector2 _desiredDirection;
 
@@ -13,6 +14,7 @@ public class Pacman : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _startingPosition = this.transform.position;
     }
 
     private void Update()
@@ -71,6 +73,13 @@ public class Pacman : MonoBehaviour
             position.x = this.levelBounds.min.x;
             _rigidbody.position = position;
         }
+    }
+
+    public void ResetPosition()
+    {
+        this.transform.position = _startingPosition;
+
+        SetDirection(Vector2.right);
     }
 
 }

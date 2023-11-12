@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bf445c53cf5dd43bb5f47ad6f11f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pellets: {fileID: 1910537628}
   pacman: {fileID: 1562682601}
   scoreText: {fileID: 1945791160}
   livesText: {fileID: 278868602}

@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform pellets;
     public Pacman pacman;
-    private Vector3 _startingPosition;
 
     public Text scoreText;
     private int _score;
@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _startingPosition = this.pacman.transform.position;
-
         NewGame();
     }
 
@@ -28,9 +26,11 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        this.pacman.transform.position = _startingPosition;
+        this.pacman.ResetPosition();
 
-        // TODO
+        foreach (Transform pellet in this.pellets) {
+            pellet.gameObject.SetActive(true);
+        }
     }
 
     private void SetLives(int lives)
@@ -47,9 +47,25 @@ public class GameManager : MonoBehaviour
         this.scoreText.text = score.ToString().PadLeft(2, '0');
     }
 
-    public void IncreaseScore(int amount)
+    public void PelletEaten(Pellet pellet)
     {
-        SetScore(_score + amount);
+        SetScore(_score + pellet.points);
+
+        if (!HasRemainingPellets()) {
+            NewRound();
+        }
+    }
+
+    private bool HasRemainingPellets()
+    {
+        foreach (Transform pellet in this.pellets)
+        {
+            if (pellet.gameObject.activeSelf) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
