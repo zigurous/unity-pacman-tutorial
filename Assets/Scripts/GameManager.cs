@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         SetLives(lives - 1);
 
         if (lives > 0) {
-            Invoke(nameof(ResetState), 3.0f);
+            Invoke(nameof(ResetState), 3f);
         } else {
             GameOver();
         }
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         if (!HasRemainingPellets())
         {
             pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 3.0f);
+            Invoke(nameof(NewRound), 3f);
         }
     }
 

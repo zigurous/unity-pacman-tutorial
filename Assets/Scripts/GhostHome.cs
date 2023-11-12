@@ -38,7 +38,7 @@ public class GhostHome : GhostBehavior
         Vector3 position = transform.position;
 
         float duration = 0.5f;
-        float elapsed = 0.0f;
+        float elapsed = 0f;
 
         // Animate to the starting point
         while (elapsed < duration)
@@ -48,7 +48,7 @@ public class GhostHome : GhostBehavior
             yield return null;
         }
 
-        elapsed = 0.0f;
+        elapsed = 0f;
 
         // Animate exiting the ghost home
         while (elapsed < duration)
@@ -59,7 +59,7 @@ public class GhostHome : GhostBehavior
         }
 
         // Pick a random direction left or right and re-enable movement
-        ghost.movement.SetDirection(new Vector2(Random.value < 0.5f ? -1.0f : 1.0f, 0.0f), true);
+        ghost.movement.SetDirection(new Vector2(Random.value < 0.5f ? -1f : 1f, 0f), true);
         ghost.movement.rigidbody.isKinematic = false;
         ghost.movement.enabled = true;
     }

@@ -18,7 +18,7 @@ public class GhostFrightened : GhostBehavior
         blue.enabled = true;
         white.enabled = false;
 
-        Invoke(nameof(Flash), duration / 2.0f);
+        Invoke(nameof(Flash), duration / 2f);
     }
 
     public override void Disable()
@@ -62,7 +62,7 @@ public class GhostFrightened : GhostBehavior
 
     private void OnDisable()
     {
-        ghost.movement.speedMultiplier = 1.0f;
+        ghost.movement.speedMultiplier = 1f;
         eaten = false;
     }
 
