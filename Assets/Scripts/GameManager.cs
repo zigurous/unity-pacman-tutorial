@@ -88,25 +88,22 @@ public class GameManager : MonoBehaviour
         this.scoreText.text = score.ToString().PadLeft(2, '0');
     }
 
-    public void GhostTouched(Ghost ghost)
+    public void PacmanEaten()
     {
-        if (ghost.vulnerable)
-        {
-            SetScore(_score + 200);
-            ghost.RetreatToHome();
-        }
-        else
-        {
-            _pacman.gameObject.SetActive(false);
+        _pacman.gameObject.SetActive(false);
 
-            SetLives(_lives - 1);
+        SetLives(_lives - 1);
 
-            if (_lives > 0) {
-                Invoke(nameof(RestartRound), 3.0f);
-            } else {
-                GameOver();
-            }
+        if (_lives > 0) {
+            Invoke(nameof(RestartRound), 3.0f);
+        } else {
+            GameOver();
         }
+    }
+
+    public void GhostEaten(Ghost ghost)
+    {
+        SetScore(_score + 200);
     }
 
     public void PelletEaten(Pellet pellet)

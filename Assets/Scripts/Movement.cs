@@ -30,6 +30,8 @@ public class Movement : MonoBehaviour
         this.direction = this.initialDirection;
         this.nextDirection = Vector2.zero;
         this.transform.position = this.startingPosition;
+        this.rigidbody.isKinematic = false;
+        this.enabled = true;
     }
 
     private void Update()
@@ -47,9 +49,9 @@ public class Movement : MonoBehaviour
         this.rigidbody.MovePosition(position + translation);
     }
 
-    public void SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 direction, bool forced = false)
     {
-        if (!Occupied(direction))
+        if (forced || !Occupied(direction))
         {
             this.direction = direction;
             this.nextDirection = Vector2.zero;
