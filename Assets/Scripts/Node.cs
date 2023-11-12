@@ -25,9 +25,4 @@ public class Node : MonoBehaviour
         }
     }
 
-    public Vector2 RandomAvailableDirection()
-    {
-        return this.availableDirections[Random.Range(0, this.availableDirections.Count)];
-    }
-
 }

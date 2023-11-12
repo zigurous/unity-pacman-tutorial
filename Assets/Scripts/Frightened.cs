@@ -42,4 +42,35 @@ public class Frightened : MonoBehaviour
         _ghost.flashing.enabled = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!this.enabled) {
+            return;
+        }
+
+        Node node = other.GetComponent<Node>();
+
+        if (node != null)
+        {
+            int index = Random.Range(0, node.availableDirections.Count);
+
+            // Prefer not to go back the same direction so increment the index
+            // to the next available direction
+            if (node.availableDirections[index] == -_ghost.movement.direction)
+            {
+                if (node.availableDirections.Count > 1)
+                {
+                    index++;
+
+                    // Wrap the index back around if overflowed
+                    if (index >= node.availableDirections.Count) {
+                        index = 0;
+                    }
+                }
+            }
+
+            _ghost.movement.SetDirection(node.availableDirections[index]);
+        }
+    }
+
 }
