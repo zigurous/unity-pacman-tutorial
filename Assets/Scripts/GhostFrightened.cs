@@ -33,17 +33,14 @@ public class GhostFrightened : GhostBehavior
 
     private void Eaten()
     {
-        if (!this.eaten)
-        {
-            this.eaten = true;
-            this.ghost.SetPosition(this.ghost.home.homeTransform.position);
-            this.ghost.home.Enable(this.duration);
+        this.eaten = true;
+        this.ghost.SetPosition(this.ghost.home.homeTransform.position);
+        this.ghost.home.Enable(this.duration);
 
-            this.body.enabled = false;
-            this.eyes.enabled = true;
-            this.blue.enabled = false;
-            this.white.enabled = false;
-        }
+        this.body.enabled = false;
+        this.eyes.enabled = true;
+        this.blue.enabled = false;
+        this.white.enabled = false;
     }
 
     private void Flash()
