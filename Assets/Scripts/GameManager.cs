@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void GhostTouched(Ghost ghost)
     {
-        if (ghost.vulnerable)
+        if (ghost.frightened.enabled)
         {
 
         }

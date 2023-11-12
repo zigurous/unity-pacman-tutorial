@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 34289919}
   - component: {fileID: 34289921}
   - component: {fileID: 34289920}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Passthrough
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 799682403}
   - component: {fileID: 799682405}
   - component: {fileID: 799682404}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Nodes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7494,7 +7494,7 @@ GameObject:
   - component: {fileID: 1723502446}
   - component: {fileID: 1723502448}
   - component: {fileID: 1723502447}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Passthrough
   m_TagString: Untagged
   m_Icon: {fileID: 0}

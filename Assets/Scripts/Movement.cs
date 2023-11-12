@@ -10,10 +10,24 @@ public class Movement : MonoBehaviour
     public new Rigidbody2D rigidbody { get; private set; }
     public Vector2 direction { get; private set; }
     public Vector2 nextDirection { get; private set; }
+    public Vector3 startingPosition { get; private set; }
 
     private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody2D>();
+        this.startingPosition = this.transform.position;
+    }
+
+    private void Start()
+    {
+        ResetState();
+    }
+
+    public void ResetState()
+    {
+        this.direction = this.initialDirection;
+        this.nextDirection = Vector2.zero;
+        this.transform.position = this.startingPosition;
     }
 
     private void Update()
@@ -42,16 +56,6 @@ public class Movement : MonoBehaviour
         {
             this.nextDirection = direction;
         }
-    }
-
-    public void SetInitialDirection()
-    {
-        SetDirection(this.initialDirection);
-    }
-
-    public void SetNextDirection(Vector2 direction)
-    {
-        this.nextDirection = direction;
     }
 
     public bool Occupied(Vector2 direction)
