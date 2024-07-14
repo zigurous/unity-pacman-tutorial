@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -12,12 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text livesText;
 
-    private int ghostMultiplier = 1;
-    private int lives = 3;
-    private int score = 0;
+    public int score { get; private set; } = 0;
+    public int lives { get; private set; } = 3;
 
-    public int Lives => lives;
-    public int Score => score;
+    private int ghostMultiplier = 1;
 
     private void Awake()
     {
@@ -25,7 +24,13 @@ public class GameManager : MonoBehaviour
             DestroyImmediate(gameObject);
         } else {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) {
+            Instance = null;
         }
     }
 
